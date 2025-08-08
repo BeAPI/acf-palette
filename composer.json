@@ -1,0 +1,13 @@
+{
+	"name": "beapi/acf-palette",
+	"description": "Add a new theme color palette selector field for Advanced Custom Fields.",
+	"minimum-stability": "stable",
+	"license": "GPL-2.0",
+	"authors": [
+		{
+		"name": "BeAPI",
+		"email": "technique@beapi.fr"
+		}
+	],
+	"type": "wordpress-plugin"
+}

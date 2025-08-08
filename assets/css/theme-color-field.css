@@ -1,0 +1,145 @@
+/**
+ * Theme Color Field Styles
+ */
+
+.acf-theme-color-field {
+	width: 100%;
+}
+
+.acf-theme-color-options {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px;
+	margin-bottom: 10px;
+}
+
+.acf-theme-color-option {
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+	padding: 8px 12px;
+	border: 2px solid #e1e1e1;
+	border-radius: 8px;
+	background: #fff;
+	transition: all 0.2s ease;
+	min-width: 120px;
+}
+
+.acf-theme-color-option:hover {
+	border-color: #0073aa;
+	background: #f8f9fa;
+}
+
+.acf-theme-color-input {
+	position: absolute;
+	opacity: 0;
+	pointer-events: none;
+}
+
+.acf-theme-color-circle {
+	width: 24px;
+	height: 24px;
+	border-radius: 50%;
+	margin-right: 8px;
+	border: 2px solid #fff;
+	box-shadow: 0 0 0 2px #e1e1e1;
+	transition: all 0.2s ease;
+	flex-shrink: 0;
+}
+
+.acf-theme-color-label {
+	font-size: 13px;
+	color: #333;
+	font-weight: 500;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+/* Selected state */
+.acf-theme-color-input:checked + .acf-theme-color-circle {
+	box-shadow: 0 0 0 2px #0073aa;
+	border-color: #fff;
+}
+
+.acf-theme-color-input:checked ~ .acf-theme-color-label {
+	color: #0073aa;
+	font-weight: 600;
+}
+
+.acf-theme-color-input:checked ~ .acf-theme-color-option {
+	border-color: #0073aa;
+	background: #f0f7ff;
+}
+
+/* Focus state for accessibility */
+.acf-theme-color-option:focus-within {
+	outline: 2px solid #0073aa;
+	outline-offset: 2px;
+}
+
+/* None option styling */
+.acf-theme-color-none .acf-theme-color-circle {
+	background: linear-gradient(45deg, #f0f0f0 25%, transparent 25%),
+	            linear-gradient(-45deg, #f0f0f0 25%, transparent 25%),
+	            linear-gradient(45deg, transparent 75%, #f0f0f0 75%),
+	            linear-gradient(-45deg, transparent 75%, #f0f0f0 75%);
+	background-size: 4px 4px;
+	background-position: 0 0, 0 2px, 2px -2px, -2px 0px;
+	border: 2px solid #ccc;
+}
+
+.acf-theme-color-none:hover .acf-theme-color-circle {
+	border-color: #999;
+}
+
+.acf-theme-color-input:checked ~ .acf-theme-color-none .acf-theme-color-circle {
+	box-shadow: 0 0 0 2px #0073aa;
+	border-color: #0073aa;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+	.acf-theme-color-options {
+		gap: 8px;
+	}
+
+	.acf-theme-color-option {
+		min-width: 100px;
+		padding: 6px 8px;
+	}
+
+	.acf-theme-color-circle {
+		width: 20px;
+		height: 20px;
+		margin-right: 6px;
+	}
+
+	.acf-theme-color-label {
+		font-size: 12px;
+	}
+}
+
+/* Preview section (kept for backward compatibility) */
+.acf-theme-color-preview {
+	display: flex;
+	align-items: center;
+	margin-top: 8px;
+	padding: 8px;
+	background: #f9f9f9;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+}
+
+.color-preview {
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	margin-right: 8px;
+	border: 1px solid #ccc;
+}
+
+.color-name {
+	font-size: 12px;
+	color: #666;
+}

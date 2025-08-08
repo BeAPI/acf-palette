@@ -1,0 +1,51 @@
+/* Styles spécifiques pour les cercles de couleur dans les champs ACF */
+.color-preview {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	border-radius: 50%;
+	margin-right: 8px;
+	border: 1px solid #ddd;
+	vertical-align: middle;
+	flex-shrink: 0;
+}
+
+/* Styles pour les champs de couleur uniquement */
+.acf-field-settings select[name*="exclude_colors"] + .select2-container .select2-results__option,
+.acf-field-settings select[name*="include_colors"] + .select2-container .select2-results__option {
+	display: flex !important;
+	align-items: center;
+	padding: 6px 12px;
+}
+
+.acf-field-settings select[name*="exclude_colors"] + .select2-container .select2-results__option .color-preview,
+.acf-field-settings select[name*="include_colors"] + .select2-container .select2-results__option .color-preview {
+	margin-right: 8px;
+	flex-shrink: 0;
+}
+
+/* Styles pour les tags sélectionnés des champs de couleur */
+.acf-field-settings select[name*="exclude_colors"] + .select2-container .select2-selection__choice,
+.acf-field-settings select[name*="include_colors"] + .select2-container .select2-selection__choice {
+	display: flex !important;
+	align-items: center;
+	padding: 4px 8px;
+	background: #f1f1f1;
+	border-radius: 4px;
+	margin: 2px;
+}
+
+.acf-field-settings select[name*="exclude_colors"] + .select2-container .select2-selection__choice .color-preview,
+.acf-field-settings select[name*="include_colors"] + .select2-container .select2-selection__choice .color-preview {
+	width: 12px;
+	height: 12px;
+	margin-right: 4px;
+}
+
+/* Forcer l'affichage des couleurs pour les champs spécifiques */
+.acf-field-settings select[name*="exclude_colors"] + .select2-container .select2-results__option .color-preview,
+.acf-field-settings select[name*="include_colors"] + .select2-container .select2-results__option .color-preview,
+.acf-field-settings select[name*="exclude_colors"] + .select2-container .select2-selection__choice .color-preview,
+.acf-field-settings select[name*="include_colors"] + .select2-container .select2-selection__choice .color-preview {
+	display: inline-block !important;
+}
