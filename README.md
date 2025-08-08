@@ -12,7 +12,7 @@ Un nouveau type de champ ACF qui récupère automatiquement les couleurs défini
 
 1. **Créer un nouveau champ ACF**
    - Type de champ : "Theme Color"
-   - Le champ affichera automatiquement toutes les couleurs définies dans `wp-content/themes/[theme]/src/theme-json/settings-color.json`
+   - Le champ affichera automatiquement toutes les couleurs définies dans `wp-content/themes/[theme]/theme.json`
 
 2. **Options du champ**
    - **Allow Null** : Permet de ne pas sélectionner de couleur
