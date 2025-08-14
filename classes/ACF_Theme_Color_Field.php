@@ -61,6 +61,17 @@ class ACF_Theme_Color_Field extends \acf_field {
 		// Get first color slug for auto-selection
 		$first_color_slug = array_key_first( $available_colors );
 
+		// If no value is set, auto-select the first available option
+		if ( empty( $field_value ) ) {
+			if ( $field['allow_null'] ) {
+				// If allow_null is true, select the "No color" option
+				$field_value = '';
+			} elseif ( ! empty( $available_colors ) ) {
+				// If allow_null is false, select the first available color
+				$field_value = $first_color_slug;
+			}
+		}
+
 		?>
 		<div class="acf-theme-color-field">
 			<div class="acf-theme-color-options">
