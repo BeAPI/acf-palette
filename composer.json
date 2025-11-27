@@ -4,12 +4,14 @@
     "type": "wordpress-plugin",
     "keywords": ["wordpress", "plugin", "acf", "fse", "theme.json", "color", "palette", "gutenberg", "editor"],
     "license": "GPL-2.0-or-later",
-    "authors": [
-        {
-            "name": "BeAPI",
-            "email": "technique@beapi.fr"
-        }
-    ],
+	"authors": [
+		{
+			"name": "BeAPI",
+			"email": "technical@beapi.fr",
+			"homepage":"https://beapi.fr",
+			"role":"Company"
+		}
+	],
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
@@ -20,11 +22,11 @@
             "phpro/grumphp-shim": true
         },
         "platform": {
-            "php": "7.4.99"
+            "php": "8.1.25"
         }
     },
     "require": {
-        "php": "^7.4 || ^8",
+        "php": "^8",
         "ext-json": "*",
         "composer/installers": "^1.0 || ^2.0"
     },
@@ -42,6 +44,9 @@
         "yoast/phpunit-polyfills": "^1.0"
     },
     "autoload": {
+		"psr-4": {
+			"BEAPI\\Acf_Palette\\": "classes/"
+		}
     },
     "autoload-dev": {
     },
