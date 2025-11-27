@@ -1,8 +1,8 @@
 {
-    "name": "beapi/package",
-    "description": "A description.",
+    "name": "beapi/acf-palette",
+    "description": "Add a new theme color palette selector field for Advanced Custom Fields.",
     "type": "wordpress-plugin",
-    "keywords": ["wordpress", "plugin", "gutenberg", "block", "share", "multisite"],
+    "keywords": ["wordpress", "plugin", "acf", "fse", "theme.json", "color", "palette", "gutenberg", "editor"],
     "license": "GPL-2.0-or-later",
     "authors": [
         {
