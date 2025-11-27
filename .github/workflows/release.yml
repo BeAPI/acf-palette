@@ -38,15 +38,6 @@ jobs:
             exit 1;
           fi
 
-      - id: build-node
-        name: "Build project CSS and JS"
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-          cache: 'npm'
-      - run: npm install
-      - run: npm run build
-
       - id: build-php
         name: "Build project PHP"
         uses: shivammathur/setup-php@v2
