@@ -36,8 +36,8 @@ class ACF_Theme_Color_Field extends \acf_field {
 	 */
 	public function render_field( $field ) {
 		$colors         = Theme_Color_Field::get_theme_colors();
-		$exclude_colors = $field['exclude_colors'] ?? [];
-		$include_colors = $field['include_colors'] ?? [];
+		$exclude_colors = ! empty($field['exclude_colors']) ? $field['exclude_colors'] : [];
+		$include_colors = ! empty($field['include_colors']) ? $field['include_colors'] : [];
 		$color_filter   = $field['color_filter'] ?? 'exclude';
 
 		// Filter colors based on the selected method
@@ -291,8 +291,8 @@ class ACF_Theme_Color_Field extends \acf_field {
 	 */
 	public function load_value( $value, $post_id, $field ) {
 		$colors         = Theme_Color_Field::get_theme_colors();
-		$exclude_colors = $field['exclude_colors'] ?? [];
-		$include_colors = $field['include_colors'] ?? [];
+		$exclude_colors = ! empty($field['exclude_colors']) ? $field['exclude_colors'] : [];
+		$include_colors = ! empty($field['include_colors']) ? $field['include_colors'] : [];
 		$color_filter   = $field['color_filter'] ?? 'exclude';
 
 		// Filter colors based on the selected method
