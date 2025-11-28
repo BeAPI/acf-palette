@@ -37,8 +37,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 // Plugin constants
 define( 'BEAPI_ACF_PALETTE_VERSION', '1.0.4' );
 define( 'BEAPI_ACF_PALETTE_VIEWS_FOLDER_NAME', 'beapi-acf-palette' );
-define( 'BEAPI_ACF_PALETTE_CPT_NAME', 'custom_post_type' );
-define( 'BEAPI_ACF_PALETTE_TAXO_NAME', 'custom_taxonomy' );
 
 // Plugin URL and PATH
 define( 'BEAPI_ACF_PALETTE_URL', plugin_dir_url( __FILE__ ) );
