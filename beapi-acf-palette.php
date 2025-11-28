@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Be API - ACF Color Palette
-Version: 1.0.4
+Version: 1.0.5
 Version Boilerplate: 3.5.0
 Plugin URI: https://beapi.fr
 Description: Add a new theme color palette selector field for Advanced Custom Fields.
@@ -35,7 +35,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Plugin constants
-define( 'BEAPI_ACF_PALETTE_VERSION', '1.0.4' );
+define( 'BEAPI_ACF_PALETTE_VERSION', '1.0.5' );
 define( 'BEAPI_ACF_PALETTE_VIEWS_FOLDER_NAME', 'beapi-acf-palette' );
 
 // Plugin URL and PATH
