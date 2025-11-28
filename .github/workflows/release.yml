@@ -42,7 +42,7 @@ jobs:
         name: "Build project PHP"
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 7.2
+          php-version: 8.3
       - run: composer install --prefer-dist --no-dev -o --ignore-platform-reqs
 
       - id: commit-and-push
