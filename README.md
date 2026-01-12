@@ -15,6 +15,10 @@ Un nouveau type de champ ACF qui récupère automatiquement les couleurs défini
    - Le champ affichera automatiquement toutes les couleurs définies dans `wp-content/themes/[theme]/theme.json`
 
 2. **Options du champ**
+   - **Color Source** : Choisir la source des couleurs
+     - `Settings Palette` : Uniquement `settings.color.palette`
+     - `Custom Colors` : Uniquement `custom.color`
+     - `Both` : Combine les deux sources (settings + custom)
    - **Allow Null** : Permet de ne pas sélectionner de couleur
    - **Default Value** : Valeur par défaut
    - **Color Filter Method** : Choisir entre exclure ou inclure des couleurs
@@ -63,9 +67,11 @@ Le champ offre deux méthodes pour filtrer les couleurs disponibles :
 
 Ces options sont mutuellement exclusives et s'affichent conditionnellement selon la méthode choisie.
 
-#### Structure attendue du theme.json
+#### Sources de couleurs disponibles
 
-Le plugin s'attend à trouver les couleurs dans :
+Le plugin peut récupérer les couleurs depuis trois sources différentes dans le `theme.json` :
+
+##### 1. Settings Palette (par défaut)
 
 ```json
 {
@@ -82,6 +88,64 @@ Le plugin s'attend à trouver les couleurs dans :
   }
 }
 ```
+
+##### 2. Custom Colors
+
+```json
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "custom": {
+    "color": {
+      "environnement-400": "#c9dcba",
+      "environnement-900": "#395f0f",
+      "entreprises-400": "#c1bcff",
+      "entreprises-900": "#001cb7"
+    }
+  },
+  "settings": {
+    // ... autres paramètres
+  }
+}
+```
+
+Les couleurs custom utilisent une structure simplifiée où le slug est la clé et la couleur hex est la valeur. Le nom lisible est généré automatiquement à partir du slug :
+
+- `environnement-400` → "Environnement 400"
+- `services-publics-900` → "Services Publics 900"
+
+##### 3. Both (Settings + Custom)
+
+Combine les couleurs des deux sources. Si un slug existe dans les deux sources, la version de `custom.color` sera prioritaire.
+
+```json
+{
+  "settings": {
+    "color": {
+      "palette": [
+        {
+          "name": "Primaire",
+          "slug": "primary",
+          "color": "#FF6745"
+        }
+      ]
+    }
+  },
+  "custom": {
+    "color": {
+      "environnement-400": "#c9dcba",
+      "entreprises-400": "#c1bcff"
+    }
+  }
+}
+```
+
+**Résultat avec "Both" :** Les 3 couleurs seront disponibles (`primary`, `environnement-400`, `entreprises-400`)
+
+**Note :** Pour les couleurs custom, le nom est automatiquement généré à partir du slug. Par exemple :
+
+- `environnement-400` devient "Environnement 400"
+- `services-publics-900` devient "Services Publics 900"
 
 ## Installation
 
