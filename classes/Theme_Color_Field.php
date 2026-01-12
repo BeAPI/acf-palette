@@ -38,19 +38,25 @@ class Theme_Color_Field {
 	 * Enqueue scripts for the field
 	 */
 	public function enqueue_scripts(): void {
-		wp_enqueue_script(
-			'beapi-acf-theme-color-field',
-			BEAPI_ACF_PALETTE_URL . 'assets/js/theme-color-field.js',
-			[ 'acf-input' ],
-			BEAPI_ACF_PALETTE_VERSION,
-			true
-		);
+		$asset_file = BEAPI_ACF_PALETTE_DIR . 'build/index.asset.php';
+		$asset      = file_exists( $asset_file ) ? require $asset_file : [
+			'dependencies' => [],
+			'version'      => BEAPI_ACF_PALETTE_VERSION,
+		];
 
 		wp_enqueue_style(
 			'beapi-acf-theme-color-field',
-			BEAPI_ACF_PALETTE_URL . 'assets/css/theme-color-field.css',
-			[],
-			BEAPI_ACF_PALETTE_VERSION
+			BEAPI_ACF_PALETTE_URL . 'build/style-index.css',
+			[ 'acf-input', 'select2' ],
+			$asset['version']
+		);
+
+		wp_enqueue_script(
+			'beapi-acf-theme-color-field',
+			BEAPI_ACF_PALETTE_URL . 'build/index.js',
+			$asset['dependencies'],
+			$asset['version'],
+			true
 		);
 	}
 
@@ -58,18 +64,23 @@ class Theme_Color_Field {
 	 * Enqueue admin styles for field settings
 	 */
 	public function enqueue_admin_styles(): void {
+		$asset_file = BEAPI_ACF_PALETTE_DIR . 'build/editor.asset.php';
+		$asset      = file_exists( $asset_file ) ? require $asset_file : [
+			'dependencies' => [],
+			'version'      => BEAPI_ACF_PALETTE_VERSION,
+		];
 		wp_enqueue_style(
 			'beapi-acf-admin-field-settings',
-			BEAPI_ACF_PALETTE_URL . 'assets/css/admin-field-settings.css',
+			BEAPI_ACF_PALETTE_URL . 'build/editor.css',
 			[],
-			BEAPI_ACF_PALETTE_VERSION
+			$asset['version']
 		);
 
 		wp_enqueue_script(
 			'beapi-acf-admin-field-settings',
-			BEAPI_ACF_PALETTE_URL . 'assets/js/admin-field-settings.js',
-			[ 'jquery', 'select2' ],
-			BEAPI_ACF_PALETTE_VERSION,
+			BEAPI_ACF_PALETTE_URL . 'build/editor.js',
+			array_merge( $asset['dependencies'], [ 'jquery' ] ),
+			$asset['version'],
 			true
 		);
 	}
@@ -99,8 +110,8 @@ class Theme_Color_Field {
 			return [];
 		}
 
-		$theme_json_content = file_get_contents( $theme_json_path );
-		$theme_json = json_decode( $theme_json_content, true );
+		$theme_json_content = file_get_contents( $theme_json_path ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
+		$theme_json         = json_decode( $theme_json_content, true );
 
 		if ( ! $theme_json || ! isset( $theme_json['settings']['color']['palette'] ) ) {
 			return [];
@@ -126,7 +137,7 @@ class Theme_Color_Field {
 	 * @return array Array of color options for ACF
 	 */
 	public static function get_color_options(): array {
-		$colors = self::get_theme_colors();
+		$colors  = self::get_theme_colors();
 		$options = [];
 
 		foreach ( $colors as $slug => $color_data ) {

@@ -3,12 +3,11 @@
          name="Project"
          xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/squizlabs/PHP_CodeSniffer/master/phpcs.xsd">
 
-    <description>Description</description>
+    <description>Acf Color Palette</description>
 
     <!-- Scan all files in directory -->
-    <file>index-file.php</file>
-    <file>./includes/</file>
-    <file>./views/</file>
+    <file>beapi-acf-palette.php</file>
+    <file>./classes/</file>
 
     <exclude-pattern>./build/</exclude-pattern>
     <exclude-pattern>./node_modules/</exclude-pattern>
@@ -31,18 +30,18 @@
         <exclude name="WordPress.PHP.DisallowShortTernary.Found"/>
     </rule>
 
-    <config name="minimum_supported_wp_version" value="6.0"/>
+    <config name="minimum_supported_wp_version" value="6.7"/>
 
     <rule ref="WordPress.WP.I18n">
         <properties>
             <property name="text_domain" type="array">
-                <element value="my-custom-test-domain"/>
+                <element value="beapi-acf-palette"/>
             </property>
         </properties>
     </rule>
 
     <rule ref="PHPCompatibility"/>
-    <config name="testVersion" value="8.3.25"/>
+    <config name="testVersion" value="8.3-"/>
 
     <!-- Scan only PHP files -->
     <arg name="extensions" value="php"/>

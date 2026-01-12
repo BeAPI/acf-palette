@@ -1,3 +1,5 @@
+import './style.scss';
+
 /**
  * Theme Color Field JavaScript
  */
