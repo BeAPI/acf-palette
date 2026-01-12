@@ -64,9 +64,6 @@ jobs:
           # Get the version from .plugin-data file.
           VERSION=${{fromJson(steps.set-vars.outputs.pluginData).version}}
 
-          echo "Copy .distignore to .gitignore"
-          cp .distignore .gitignore
-
           echo "Configure git"
           git config --local user.email "$(git log --format='%ae' HEAD^!)"
           git config --local user.name "$(git log --format='%an' HEAD^!)"
@@ -74,9 +71,20 @@ jobs:
           echo "Creating branch"
           git checkout -b release/${VERSION}
 
+          echo "Untrack files from .distignore"
+          # Read .distignore and untrack each file/folder
+          while IFS= read -r pattern || [ -n "$pattern" ]; do
+            # Skip empty lines and comments
+            if [[ -n "$pattern" && ! "$pattern" =~ ^# ]]; then
+              # Remove leading slash for git rm command
+              pattern_clean="${pattern#/}"
+              # Untrack files and folders (without deleting them)
+              git rm -r --cached "$pattern_clean" 2>/dev/null || true
+            fi
+          done < .distignore
+
           echo "Creating tag ${VERSION}"
           git add .
-          git add -u
           git commit -m "Release version ${VERSION}"
           git tag ${VERSION}
           git push --tags
