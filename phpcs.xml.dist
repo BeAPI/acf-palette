@@ -36,13 +36,13 @@
     <rule ref="WordPress.WP.I18n">
         <properties>
             <property name="text_domain" type="array">
-                <element value="my-custom-test-domain"/>
+                <element value="beapi-acf-palette"/>
             </property>
         </properties>
     </rule>
 
     <rule ref="PHPCompatibility"/>
-    <config name="testVersion" value="8.3.25"/>
+    <config name="testVersion" value="8.3-"/>
 
     <!-- Scan only PHP files -->
     <arg name="extensions" value="php"/>

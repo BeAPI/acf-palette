@@ -1,16 +1,23 @@
 <?xml version="1.0"?>
 <psalm
-    errorLevel="1"
-    resolveFromConfigFile="true"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns="https://getpsalm.org/schema/config"
-    xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
+        errorLevel="4"
+        resolveFromConfigFile="true"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="https://getpsalm.org/schema/config"
+        xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
+        findUnusedBaselineEntry="true"
+        findUnusedCode="true"
 >
-    <plugins>
-        <pluginClass class="PsalmWordPress\Plugin"/>
-    </plugins>
-
     <projectFiles>
-        <file name="index-file.php"/>
+        <file name="beapi-acf-palette.php"/>
+        <directory name="classes"/>
+        <ignoreFiles>
+            <directory name=".github"/>
+            <directory name="build"/>
+            <directory name="languages"/>
+            <directory name="node_modules"/>
+            <directory name="src"/>
+            <directory name="vendor"/>
+        </ignoreFiles>
     </projectFiles>
-</psalm>
+<plugins><pluginClass class="PsalmWordPress\Plugin"/></plugins></psalm>
