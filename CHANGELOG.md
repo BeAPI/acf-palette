@@ -23,6 +23,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Split color retrieval logic into separate methods for better maintainability
 - Updated README with documentation for the new color sources
 - Include/Exclude color fields are now automatically reloaded with correct colors when source changes (via AJAX)
+- Simplified Return Format options: removed "Label" option, kept "Slug", "Hex Color", and "Both (Array)"
+- Updated Array format to return `name`, `slug`, and `color` (instead of `value`, `label`, `color`) for consistency
 
 ### Fixed
 

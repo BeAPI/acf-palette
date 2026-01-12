@@ -238,9 +238,8 @@ class ACF_Theme_Color_Field extends \acf_field {
 				'name'         => 'return_format',
 				'type'         => 'radio',
 				'choices'      => [
-					'value' => __( 'Value (Slug)', 'beapi-acf-palette' ),
+					'value' => __( 'Slug', 'beapi-acf-palette' ),
 					'hex'   => __( 'Hex Color', 'beapi-acf-palette' ),
-					'label' => __( 'Label', 'beapi-acf-palette' ),
 					'array' => __( 'Both (Array)', 'beapi-acf-palette' ),
 				],
 				'layout'       => 'horizontal',
@@ -272,12 +271,10 @@ class ACF_Theme_Color_Field extends \acf_field {
 		switch ( $field['return_format'] ) {
 			case 'hex':
 				return $color_data['color'];
-			case 'label':
-				return $color_data['name'];
 			case 'array':
 				return [
-					'value' => $value,
-					'label' => $color_data['name'],
+					'name'  => $color_data['name'],
+					'slug'  => $value,
 					'color' => $color_data['color'],
 				];
 			default:
