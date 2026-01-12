@@ -45,6 +45,19 @@ jobs:
           php-version: 8.3
       - run: composer install --prefer-dist --no-dev -o --ignore-platform-reqs
 
+      - id: setup-node
+        name: "Setup Node.js"
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - id: build-js
+        name: "Build JavaScript assets"
+        run: |
+          npm ci
+          npm run build
+
       - id: commit-and-push
         name: "Commit and push new TAG"
         run: |
