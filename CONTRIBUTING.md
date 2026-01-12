@@ -17,7 +17,7 @@ npm install
 npm run env:start
 
 # Install and activate ACF pro, for example :
-npm run env:cli -- wp plugin install --activate https://composer.beapi.fr/dist/wpengine/advanced-custom-fields-pro/wpengine-advanced-custom-fields-pro-6.2.7.zip
+npm run wp-cli -- wp plugin install --activate https://composer.beapi.fr/dist/wpengine/advanced-custom-fields-pro/wpengine-advanced-custom-fields-pro-6.2.7.zip
 ```
 
 ## Créer une nouvelle fonctionnalité ou un correctif
