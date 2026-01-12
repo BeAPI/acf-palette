@@ -21,5 +21,7 @@ phpcs.xml.dist
 phpunit.xml.dist
 psalm.xml.dist
 README.md
+CHANGELOG.md
+CONTRIBUTING.md
 webpack.config.js
 yarn.lock

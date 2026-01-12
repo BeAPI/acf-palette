@@ -24,6 +24,7 @@ class ACF_Theme_Color_Field extends \acf_field {
 			'exclude_colors' => [],
 			'include_colors' => [],
 			'color_filter'   => 'exclude', // 'exclude' or 'include'
+			'color_source'   => 'settings', // 'settings', 'custom', or 'both'
 		];
 
 		parent::__construct();
@@ -35,9 +36,10 @@ class ACF_Theme_Color_Field extends \acf_field {
 	 * @param array $field The field settings
 	 */
 	public function render_field( $field ) {
-		$colors         = Theme_Color_Field::get_theme_colors();
-		$exclude_colors = ! empty($field['exclude_colors']) ? $field['exclude_colors'] : [];
-		$include_colors = ! empty($field['include_colors']) ? $field['include_colors'] : [];
+		$color_source   = $field['color_source'] ?? 'settings';
+		$colors         = Theme_Color_Field::get_theme_colors( $color_source );
+		$exclude_colors = ! empty( $field['exclude_colors'] ) ? $field['exclude_colors'] : [];
+		$include_colors = ! empty( $field['include_colors'] ) ? $field['include_colors'] : [];
 		$color_filter   = $field['color_filter'] ?? 'exclude';
 
 		// Filter colors based on the selected method
@@ -116,6 +118,24 @@ class ACF_Theme_Color_Field extends \acf_field {
 	 * @param array $field The field settings
 	 */
 	public function render_field_settings( $field ) {
+		// Color Source
+		acf_render_field_setting(
+			$field,
+			[
+				'label'         => __( 'Color Source', 'beapi-acf-palette' ),
+				'instructions'  => __( 'Choose where to retrieve colors from theme.json', 'beapi-acf-palette' ),
+				'name'          => 'color_source',
+				'type'          => 'radio',
+				'choices'       => [
+					'settings' => __( 'Settings Palette (settings.color.palette)', 'beapi-acf-palette' ),
+					'custom'   => __( 'Custom Colors (custom.color)', 'beapi-acf-palette' ),
+					'both'     => __( 'Both (settings + custom)', 'beapi-acf-palette' ),
+				],
+				'layout'        => 'vertical',
+				'default_value' => 'settings',
+			]
+		);
+
 		// Allow null
 		acf_render_field_setting(
 			$field,
@@ -157,7 +177,8 @@ class ACF_Theme_Color_Field extends \acf_field {
 		);
 
 		// Exclude Colors setting
-		$colors        = Theme_Color_Field::get_theme_colors();
+		$color_source  = $field['color_source'] ?? 'settings';
+		$colors        = Theme_Color_Field::get_theme_colors( $color_source );
 		$color_choices = [];
 		foreach ( $colors as $slug => $color_data ) {
 			$color_choices[ $slug ] = $color_data['name'] . ' (' . $color_data['color'] . ')';
@@ -217,9 +238,8 @@ class ACF_Theme_Color_Field extends \acf_field {
 				'name'         => 'return_format',
 				'type'         => 'radio',
 				'choices'      => [
-					'value' => __( 'Value (Slug)', 'beapi-acf-palette' ),
+					'value' => __( 'Slug', 'beapi-acf-palette' ),
 					'hex'   => __( 'Hex Color', 'beapi-acf-palette' ),
-					'label' => __( 'Label', 'beapi-acf-palette' ),
 					'array' => __( 'Both (Array)', 'beapi-acf-palette' ),
 				],
 				'layout'       => 'horizontal',
@@ -240,8 +260,9 @@ class ACF_Theme_Color_Field extends \acf_field {
 			return $value;
 		}
 
-		$colors     = Theme_Color_Field::get_theme_colors();
-		$color_data = $colors[ $value ] ?? null;
+		$color_source = $field['color_source'] ?? 'settings';
+		$colors       = Theme_Color_Field::get_theme_colors( $color_source );
+		$color_data   = $colors[ $value ] ?? null;
 
 		if ( ! $color_data ) {
 			return $value;
@@ -250,12 +271,10 @@ class ACF_Theme_Color_Field extends \acf_field {
 		switch ( $field['return_format'] ) {
 			case 'hex':
 				return $color_data['color'];
-			case 'label':
-				return $color_data['name'];
 			case 'array':
 				return [
-					'value' => $value,
-					'label' => $color_data['name'],
+					'name'  => $color_data['name'],
+					'slug'  => $value,
 					'color' => $color_data['color'],
 				];
 			default:
@@ -272,7 +291,8 @@ class ACF_Theme_Color_Field extends \acf_field {
 	 * @return mixed
 	 */
 	public function update_value( $value, $post_id, $field ) {
-		$colors = Theme_Color_Field::get_theme_colors();
+		$color_source = $field['color_source'] ?? 'settings';
+		$colors       = Theme_Color_Field::get_theme_colors( $color_source );
 
 		if ( ! empty( $value ) && ! isset( $colors[ $value ] ) ) {
 			return '';
@@ -290,9 +310,10 @@ class ACF_Theme_Color_Field extends \acf_field {
 	 * @return mixed
 	 */
 	public function load_value( $value, $post_id, $field ) {
-		$colors         = Theme_Color_Field::get_theme_colors();
-		$exclude_colors = ! empty($field['exclude_colors']) ? $field['exclude_colors'] : [];
-		$include_colors = ! empty($field['include_colors']) ? $field['include_colors'] : [];
+		$color_source   = $field['color_source'] ?? 'settings';
+		$colors         = Theme_Color_Field::get_theme_colors( $color_source );
+		$exclude_colors = ! empty( $field['exclude_colors'] ) ? $field['exclude_colors'] : [];
+		$include_colors = ! empty( $field['include_colors'] ) ? $field['include_colors'] : [];
 		$color_filter   = $field['color_filter'] ?? 'exclude';
 
 		// Filter colors based on the selected method
