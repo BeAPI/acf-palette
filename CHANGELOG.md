@@ -9,6 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Nothing yet.
 
+## [1.1.2] - 2026-07-07
+
+- Add support for PHP 8.4
+- Update `.gitattributes` file
+
 ## [1.1.1] - 2026-01-12
 
 - JavaScript build step in release workflow with `npm run build`
