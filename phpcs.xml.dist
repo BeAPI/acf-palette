@@ -41,7 +41,7 @@
     </rule>
 
     <rule ref="PHPCompatibility"/>
-    <config name="testVersion" value="8.3-"/>
+    <config name="testVersion" value="8.4-"/>
 
     <!-- Scan only PHP files -->
     <arg name="extensions" value="php"/>
