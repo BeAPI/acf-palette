@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Nothing yet.
 
+## [1.1.3] - 2026-07-08
+
+- Add support for v3 theme json schema
+
 ## [1.1.2] - 2026-07-07
 
 - Add support for PHP 8.4
